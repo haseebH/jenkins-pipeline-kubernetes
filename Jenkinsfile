@@ -123,7 +123,7 @@ pipeline {
         // The commented out parameters are for optionally using them in the pipeline.
         // In this example, the parameters are loaded from file ${JENKINS_HOME}/parameters.groovy later in the pipeline.
         // The ${JENKINS_HOME}/parameters.groovy can be a mounted secrets file in your Jenkins container.
-
+        credentials(name: 'KUBECONFIG', description: 'A user to build with', defaultValue: '', credentialType: "Kubernetes configuration (kubeconfig)", required: true )
         string (name: 'DOCKER_REG',       defaultValue: 'docker-artifactory.my',                   description: 'Docker registry')
         string (name: 'DOCKER_TAG',       defaultValue: 'dev',                                     description: 'Docker tag')
         string (name: 'DOCKER_USR',       defaultValue: 'admin',                                   description: 'Your helm repository user')
