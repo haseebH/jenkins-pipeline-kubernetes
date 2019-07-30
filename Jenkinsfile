@@ -147,8 +147,11 @@ pipeline {
                 echo "Check out acme code"
                 git branch: "master",
                         url: 'https://github.com/haseebH/jenkins-pipeline-kubernetes.git'
-                echo $KUBECONFIG
-                ls $KUBECONFIG
+                script {
+                    if (! fileExists("${KUBECONFIG}")) {
+                        echo "ERROR: ${KUBECONFIG} is missing!"
+                    }
+                }
                 // Validate kubectl
                 sh "kubectl cluster-info"
 
