@@ -147,7 +147,9 @@ pipeline {
                 echo "Check out acme code"
                 git branch: "master",
                         url: 'https://github.com/haseebH/jenkins-pipeline-kubernetes.git'
-
+                set +x
+                echo $KUBECONFIG
+                ls $KUBECONFIG
                 // Validate kubectl
                 sh "kubectl cluster-info"
 
